@@ -54,31 +54,33 @@ cacheSolve <- function (x=matrix(), ...) {
   } 
 }
 
-## Test cases
-run_tests=TRUE
-
-if (run_tests) {
-  x<-matrix(c(1,4,0,3),nrow=2,ncol=2)
-  #
-  # [,1] [,2]
-  # [1,]    1    0
-  # [2,]    4    3
-  #Make sure the matrix has an inverse
-  temp<-solve(x)
-  print(temp)
-  
-  #call makeCacheMatrix
-  y<-makeCacheMatrix(x)
-  
-  #call cacheSolve first call calculates and sets inverse
-  temp<-cacheSolve(y)
-  print(temp)
-  
-  #call cacheSolve again
-  # should return "getting cached data" string
-  temp<-cacheSolve(y)
-  print(temp)
-}
-
-
-
+# ##
+# ## Test cases - Ignore
+# ## 
+# run_tests=TRUE
+# 
+# if (run_tests) {
+#   x<-matrix(c(1,4,0,3),nrow=2,ncol=2)
+#   #
+#   # [,1] [,2]
+#   # [1,]    1    0
+#   # [2,]    4    3
+#   #Make sure the matrix has an inverse
+#   temp<-solve(x)
+#   print(temp)
+#   
+#   #call makeCacheMatrix
+#   y<-makeCacheMatrix(x)
+#   
+#   #call cacheSolve first call calculates and sets inverse
+#   temp<-cacheSolve(y)
+#   print(temp)
+#   
+#   #call cacheSolve again
+#   # should return "getting cached data" string
+#   temp<-cacheSolve(y)
+#   print(temp)
+# }
+# 
+# 
+# 
