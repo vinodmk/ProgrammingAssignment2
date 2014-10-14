@@ -19,39 +19,41 @@
 #
 
 makeCacheMatrix <- function (x=matrix()) {
-  mat_inv<-NULL
-
-  # set the matrix value and make inverse null
-  set<-function (y){
-    x<<-y
-    mat_inv<<-NULL
-  }
-  #get function
-  get<- function() x
-  #setInverse function, inverse is calculated outside (in cacheSolve) not here
-  setInverse <- function(inv) mat_inv<<-inv
-  #getInverse return the inverse 
-  getInverse <- function() mat_inv
-  
-  list(set=set, get=get, setInverse=setInverse,
-       getInverse=getInverse)
-  
+    mat_inv <- NULL
+    
+    # set the matrix value and make inverse null
+    set <- function (y){
+        x <<- y
+        mat_inv <<- NULL
+    }
+    
+    #get function
+    get <- function() x
+    
+    #setInverse function, inverse is calculated outside (in cacheSolve) not here
+    setInverse <- function(inv) mat_inv<<-inv
+    
+    #getInverse return the inverse 
+    getInverse <- function() mat_inv
+    
+    list(set=set, get=get, setInverse=setInverse, getInverse=getInverse)
 }
 
 
 # cacheSolve: return the inverse of the matrix from the cache
 # in case it does not exist in cache its calculated and "set" so that it can be used in future
 cacheSolve <- function (x=matrix(), ...) {
-  inv<-x$getInverse()
-  if (!is.null(inv)) {
-    message("getting cached data")
-    return(inv)
-  } else {
-    data<-x$get()
-    inv<-solve(data)
-    x$setInverse(inv)
-    return (inv)
-  } 
+    inv<-x$getInverse()
+    if (!is.null(inv)) {
+        message("getting cached data")
+        return(inv)
+    } else { 
+        #else not really needed as if has a return but wanted to be "safe"
+        data<-x$get()
+        inv<-solve(data)
+        x$setInverse(inv)
+        return (inv)
+    } 
 }
 
 # ##
